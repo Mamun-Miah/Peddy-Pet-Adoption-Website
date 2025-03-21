@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google font DN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+    rel="stylesheet" />
+  <!-- Daisy UI CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.12/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    * {
+      font-family: lato;
+    }
+
+    .active {
+      background-color: rgba(160, 170, 15, 0.1);
+    }
+  </style>
+  <title>Peddy</title>
+</head>
+
+<body class="font-lato">
+  <header class="container mx-auto">
+    <nav>
+      <div class="navbar bg-base-100">
+        <div class="navbar-start">
+          <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+              </svg>
+            </div>
+            <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+              <li><a>Home</a></li>
+              <li><a>Shop</a></li>
+              <li><a>Contact</a></li>
+            </ul>
+          </div>
+          <div class="flex items-center gap-2">
+            <img src="./images/logo.webp" alt="" />
+            <a class="text-3xl font-bold">Peddy</a>
+          </div>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+          <ul class="menu menu-horizontal px-1">
+            <li><a>Home</a></li>
+            <li><a>Shop</a></li>
+            <li><a>Contact</a></li>
+          </ul>
+        </div>
+        <div class="navbar-end">
+          <img class="w-8" src="https://img.icons8.com/?size=80&id=L2XFfVgMwNDO&format=png" alt="" />
+        </div>
+      </div>
+    </nav>
+    <!-- Banner Section -->
+    <section>
+      <div>
+        <div class="hero">
+          <div class="hero-content text-center">
+            <div class="max-w-lg">
+              <p class="mb-5 text-gray-500">Bringing Families Together ❤️‍🔥</p>
+              <h1 class="text-5xl font-bold">
+                Your Path to Adoption Starts Here
+              </h1>
+              <p class="py-6">
+                From this site you can adopt your pet anytime anywhere. We
+                provide your desire pet what you want.
+              </p>
+              <button onclick="window.location.href='#adopt'" class="btn text-white bg-cyan-800">
+                View More
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center justify-center">
+          <img src="./images/pet.webp" alt="" />
+        </div>
+        <!-- Adopt Your Fried Section -->
+        <div id="adopt" class="flex items-center justify-center flex-col gap-2">
+          <p class="text-3xl font-semibold">Adopt Your Best Friend</p>
+          <p class="text-center px-4">
+            You can find your best friend from here. So why late ? try out our
+            service.
+          </p>
+        </div>
+      </div>
+    </section>
+  </header>
+  <main class="container mx-auto">
+    <!-- Catagory Button Sectiion -->
+    <div id="cate-btn-div" class="flex flex-wrap gap-4 items-center justify-between my-4 w-10/12 mx-auto">
+
+
+    </div>
+
+    <!-- Sort Section -->
+    <section>
+      <div class="flex justify-between items-center my-6 px-4">
+        <p class="text-xl font-semibold">Best Deal For You</p>
+        <button onclick="getSortApi()" class="btn text-white bg-cyan-800">
+          Sort By Price
+        </button>
+      </div>
+    </section>
+    <!-- Modal Section -->
+    <section>
+      <dialog id="modal1" class="w-8/12 lg:w-5/12 p-3">
+
+      </dialog>
+    </section>
+    <!-- Countdown Modal section -->
+    <section>
+      <dialog id="modal2" class="modal hidden">
+        <div class="modal-box">
+          <div class="flex flex-col items-center">
+            <img src="https://img.icons8.com/?size=48&id=q6BlPrJZmxHV&format=png" alt="">
+            <h1 class="text-4xl font-semibold my-2">Congrats!</h1>
+            <p>Adoption process is start for your pet.</p>
+            <div class="count text-8xl font-bold">3</div>
+          </div>
+        </div>
+      </dialog>
+    </section>
+    <!-- Card Display Section -->
+    <div id="loading-div" class="flex justify-center py-5">
+      <span class="loading loading-bars loading-md"></span>
+    </div>
+    <!-- No Data Div -->
+    <div class="flex justify-center">
+      <div id="hide-data" class="flex-1 hidden w-9/12 bg-slate-100 py-24">
+        <div class="flex justify-center">
+          <img src="./images/error.webp" alt="" />
+        </div>
+        <p class="text-4xl font-bold text-center my-5">No Data Available</p>
+        <p class="text-gray-600 font-bold text-center">
+          Dont Worry Stay with us. we will add your friens ASAP.
+        </p>
+      </div>
+    </div>
+    <!-- Card Div -->
+    <section class="flex justify-center items-center">
+      <div class="flex flex-1 justify-center gap-2">
+        <!-- Left Side Div -->
+        <div class="lg:w-9/12">
+          <div id="makeCardDiv" class="grid md:grid-cols-2 lg:grid-cols-3 gap-2 items-start">
+          </div>
+        </div>
+        <!-- Right Side Div -->
+        <div id="right-side" class="border-2 w-3/12">
+          <div id="side-div" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 rounded-lg p-2 gap-2 items-start">
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer flex justify-between flex-col lg:flex-row bg-black text-white p-10 mt-10">
+    <nav>
+      <div class="flex items-center gap-2">
+        <img src="./images/logo.webp" alt="" />
+        <a class="text-3xl font-bold">Peddy</a>
+      </div>
+      <a class="link link-hover">Location av. 165, NY CA</a>
+      <a class="link link-hover">54003</a>
+      <a class="link link-hover">Phone: +31 85 964 47 25</a>
+      <a class="link link-hover">Email: info@peddy.com</a>
+      <a class="link link-hover">Opening hours: 9.00 AM - 5.00 PM</a>
+      <div class="flex place-items-center gap-2">
+        <img src="https://img.icons8.com/?size=48&id=118497&format=png" alt="" />
+        <img class="w-10 h-9" src="./images/twiter.png" alt="" />
+        <img src="https://img.icons8.com/?size=48&id=9a46bTk3awwI&format=png" alt="" />
+        <img src="https://img.icons8.com/?size=48&id=Xy10Jcu1L2Su&format=png" alt="" />
+      </div>
+    </nav>
+    <nav>
+      <a class="text-2xl font-semibold">Useful Links</a>
+      <a class="link link-hover">Home</a>
+      <a class="link link-hover">About Us</a>
+      <a class="link link-hover">Animals</a>
+      <a class="link link-hover">Foundation</a>
+      <a class="link link-hover">Contact</a>
+    </nav>
+    <form>
+      <h6 class="footer-title">Drop A Message</h6>
+      <fieldset class="form-control w-80">
+        <label class="label"> </label>
+        <div class="join flex flex-col gap-3">
+          <input type="text" placeholder="Enter your email" class="input" />
+          <button class="btn text-white bg-cyan-800 border-none">
+            Subscribe
+          </button>
+        </div>
+      </fieldset>
+    </form>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+
+</html>
