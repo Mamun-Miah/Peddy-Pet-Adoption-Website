@@ -17,4 +17,4 @@
    - Yes, the project leverages modern ES6 features for optimized performance and cleaner code.
 
 **Live Link:** 
-    https://test.mdmamunmiah.com/
+    https://peddy.mdmamunmiah.com/
